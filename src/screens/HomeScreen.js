@@ -36,14 +36,15 @@ const HomeScreen = () => {
         ...,
         restaurants[]->{
           ...,
-          dishes[] ->
+          dishes[] ->,
+          type ->
         }
       }`
       )
       .then((data) => setFeaturedCategories(data));
   }, []);
 
-  console.log(featuredCategories)
+  console.log(featuredCategories);
 
   return (
     <SafeAreaView className="bg-white pt-5 flex-1">
@@ -80,31 +81,23 @@ const HomeScreen = () => {
 
         <Categories />
 
-        {featuredCategories?.map((category) => (
-          <FeaturedRow
-            id={category._id}
-            key={category._id}
-            title={category.title}
-            description="Paid placement from our partner"
-            featuredCategory="featured"
-          />
-        ))}
-
         {/* Featured Row */}
 
-        <FeaturedRow
-          id="124"
-          title="Tasty discounts"
-          description="Everyone's been enjoying these juicy discounts!"
-          featuredCategory="discounts"
-        />
-
-        <FeaturedRow
-          id="125"
-          title="Offers near you!"
-          description="why not support your local resturants tonight!"
-          featuredCategory="offers"
-        />
+        {featuredCategories?.map((category) => {
+          console.log("---------------------------------------------------");
+          console.log(JSON.stringify(category.restaurants[0]));
+          
+          return (
+            <FeaturedRow
+              id={category._id}
+              key={category._id}
+              title={category.name}
+              description={category.short_description}
+              featuredCategory="featured"
+              restaurants={category.restaurants}
+            />
+          );
+        })}
       </ScrollView>
     </SafeAreaView>
   );
