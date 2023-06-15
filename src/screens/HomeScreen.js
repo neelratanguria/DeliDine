@@ -44,8 +44,6 @@ const HomeScreen = () => {
       .then((data) => setFeaturedCategories(data));
   }, []);
 
-  console.log(featuredCategories);
-
   return (
     <SafeAreaView className="bg-white pt-5 flex-1">
       {/* Header */}
@@ -83,10 +81,7 @@ const HomeScreen = () => {
 
         {/* Featured Row */}
 
-        {featuredCategories?.map((category) => {
-          console.log("---------------------------------------------------");
-          console.log(JSON.stringify(category.restaurants[0]));
-          
+        {featuredCategories?.map((category) => {          
           return (
             <FeaturedRow
               id={category._id}

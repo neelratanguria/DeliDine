@@ -22,7 +22,6 @@ const FeaturedRow = ({ title, description, featuredCategory, restaurants }) => {
         className="pt-4"
       >
         {
-          
           restaurants?.map((restaurant) => (
             <ResturantCard
             key={restaurant._id}
@@ -39,55 +38,6 @@ const FeaturedRow = ({ title, description, featuredCategory, restaurants }) => {
         />
           ))
         }
-        {/* Resturant cards
-        <ResturantCard
-            id={1234}
-            imgUrl="https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=640&h=960&dpr=2"
-            title="Yo! Biriyani"
-            rating={4.5}
-            genre="North Indian"
-            address="Saheed Nagar"
-            short_description="This is a test description"
-            dishes={[]}
-            long={20.1223}
-            lat={84.231}
-        />
-        <ResturantCard
-            id={1234}
-            imgUrl="https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=640&h=960&dpr=2"
-            title="Yo! Biriyani"
-            rating={4.5}
-            genre="North Indian"
-            address="Saheed Nagar"
-            short_description="This is a test description"
-            dishes={[]}
-            long={20.1223}
-            lat={84.231}
-        />
-        <ResturantCard
-            id={1234}
-            imgUrl="https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=640&h=960&dpr=2"
-            title="Yo! Biriyani"
-            rating={4.5}
-            genre="North Indian"
-            address="Saheed Nagar"
-            short_description="This is a test description"
-            dishes={[]}
-            long={20.1223}
-            lat={84.231}
-        />
-        <ResturantCard
-            id={1234}
-            imgUrl="https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=640&h=960&dpr=2"
-            title="Yo! Biriyani"
-            rating={4.5}
-            genre="North Indian"
-            address="Saheed Nagar"
-            short_description="This is a test description"
-            dishes={[]}
-            long={20.1223}
-            lat={84.231}
-        /> */}
       </ScrollView>
     </View>
   );

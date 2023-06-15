@@ -1,8 +1,24 @@
 import { View, Text, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CategoryCard from "./CategoryCard";
+import sanityClient, { urlFor } from "../../sanity";
 
 const Categories = () => {
+  const [categories, setCategoies] = useState([]);
+
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `
+    *[_type == "category"]
+    `
+      )
+      .then((data) => {
+        setCategoies(data);
+      })
+      .catch((err) => {});
+  }, []);
+
   return (
     <ScrollView
       horizontal
@@ -12,35 +28,13 @@ const Categories = () => {
         paddingTop: 10,
       }}
     >
-      {/* Category Card */}
-      <CategoryCard
-        imgUrl="https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=640&h=960&dpr=2"
-        title="Testing"
-      />
-      <CategoryCard
-        imgUrl="https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg?auto=compress&cs=tinysrgb&w=640&h=960&dpr=2"
-        title="Testing"
-      />
-      <CategoryCard
-        imgUrl="https://payload.cargocollective.com/1/15/494563/13468564/roo-03_1340_c.jpg"
-        title="Testing"
-      />
-      <CategoryCard
-        imgUrl="https://payload.cargocollective.com/1/15/494563/13468564/roo-03_1340_c.jpg"
-        title="Testing"
-      />
-      <CategoryCard
-        imgUrl="https://payload.cargocollective.com/1/15/494563/13468564/roo-03_1340_c.jpg"
-        title="Testing"
-      />
-      <CategoryCard
-        imgUrl="https://payload.cargocollective.com/1/15/494563/13468564/roo-03_1340_c.jpg"
-        title="Testing"
-      />
-      <CategoryCard
-        imgUrl="https://payload.cargocollective.com/1/15/494563/13468564/roo-03_1340_c.jpg"
-        title="Testing"
-      />
+      {categories.map((category) => (
+        <CategoryCard
+          key={category._id}
+          imgUrl={urlFor(category.image).width(200).url()}
+          title={category.name}
+        />
+      ))}
     </ScrollView>
   );
 };
